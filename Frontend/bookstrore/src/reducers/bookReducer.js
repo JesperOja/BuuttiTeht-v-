@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import bookService from '../services/bookService'
+import {addBook, getAll, editBook, getOne, deleteBook} from '../services/bookService'
 
 const bookSlice = createSlice({
     name: "books",
@@ -19,31 +19,39 @@ const bookSlice = createSlice({
     }
 })
 
-export const addBook = (newBook) => {
+export const createBook = (newBook) => {
     return async dispatch => {
-        const addBook = await bookService.addBook(newBook)
-        dispatch(appendBook(addBook));
+        const addedBook = await addBook(newBook)
+        dispatch(appendBook(addedBook));
     }
 }
 
 export const initializeBooks = () => {
     return async dispatch => {
-        const books = await bookService.getAll();
+        const books = await getAll();
         dispatch(allBooks(books));
     }
 }
 
-export const editBook = (book) => {
+export const changeBook = (id, book) => {
     return async dispatch => {
-        const updatedBook = await bookService.editBook(book.id, book);
+        const updatedBook = await editBook(id, book);
         dispatch(updateBook(updatedBook));
     }
 }
 
 export const getBook = (id) => {
     return async dispatch => {
-        const book = await bookService.getOne(id);
+        const book = await getOne(id);
         dispatch(updateBook(book));
+    }
+}
+
+export const delBook = (id) => {
+    return async dispatch => {
+        await deleteBook(id)
+        const books = await getAll()
+        dispatch(allBooks(books))
     }
 }
 

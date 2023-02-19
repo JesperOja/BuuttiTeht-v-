@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = '/api/books';
+const baseUrl = 'http://localhost:3001/api/book';
 
 export const getAll = async () => {
     const response = await axios.get(baseUrl);
@@ -13,8 +13,8 @@ export const getOne = async (id) => {
 }
 
 export const editBook = async (id, book) => {
-    const request = await axios.put(`${baseUrl}/${id}`, book);
-    return request.then(response => response.data);
+    const response = await axios.put(`${baseUrl}/${id}`, book);
+    return response.data;
 }
 
 export const deleteBook = async (id) => {
@@ -23,6 +23,6 @@ export const deleteBook = async (id) => {
 }
 
 export const addBook = async (book) => {
-    const response = await axios.post(baseUrl, book);
+    const response = await axios.post(`${baseUrl}/add`, book);
     return response.data;
 }

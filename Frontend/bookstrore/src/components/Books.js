@@ -1,22 +1,36 @@
-import React, { useEffect } from "react";
+import React from "react";
 
+const Books = (props) => {
 
+    const showInfo = () => {
+        if(allBooks.id === props.clickedBook){
+            props.bookID(0)
+        }
+        else{
+        props.bookID(allBooks.id)
+    }
+    }
+    const allBooks = props.books;
 
-const Books = (books) => {
-    
-
-
-    return(
+    if(allBooks.lenght === 0){
+        return( <>Such empty...</>)
+    }else{
+        return(
         <>
-            <ul>
-               {books.map(book => {
-                <li>
-                    {book.author} : {book.title}
-                </li>
-               })} 
-            </ul>
+            <div>
+            <button onClick={showInfo}>
+                <div>
+                    Author: {allBooks.author}
+                </div>
+                <div>
+                    title: {allBooks.title}
+                </div>
+            </button>
+            </div>
         </>
     )
+    }
+    
 }
 
 export default Books;
