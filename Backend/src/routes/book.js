@@ -1,6 +1,5 @@
 import express from "express";
-import Book from "../models/book.js";
-import { sequelize } from "../util/db.js";
+import {Book} from "../models/index.js";
 
 const router = express.Router();
 
@@ -12,6 +11,14 @@ const bookFinder = async (req, res, next) => {
 router.get('/', async (req, res) => {
     const books = await Book.findAll();
     res.json(books);
+})
+
+router.get('/:id', bookFinder, async (req, res) => {
+    if(req.book){
+        res.json(req.book);
+    }else{
+        res.status(204).end();
+    }
 })
 
 router.post('/add', async (req, res) => {

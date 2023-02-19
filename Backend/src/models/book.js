@@ -23,7 +23,7 @@ Book.init({
 }, {
     sequelize,
     underscored: true,
-    modelName: 'blog'
+    modelName: 'book'
 })
 
 export default Book; 
