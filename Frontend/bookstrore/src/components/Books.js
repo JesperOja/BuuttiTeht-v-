@@ -17,15 +17,15 @@ const Books = (props) => {
     }else{
         return(
         <>
-            <div>
-            <button onClick={showInfo}>
+            <div onClick={showInfo}>
+            
                 <div>
                     Author: {allBooks.author}
                 </div>
                 <div>
                     title: {allBooks.title}
                 </div>
-            </button>
+            
             </div>
         </>
     )
