@@ -23,7 +23,7 @@ const App = () => {
 
       {booksInOrder.map(book =>
         <div key={book.id} style={{ display: "flex", flexWrap:"wrap", height:"60px", padding:"10px"}}>
-          <div style={{ width: "40%", textAlign: "center",height:"60px", border:"3px solid blue", margin:"3px" }}>
+          <div style={{ width: "40%",height:"60px", border:"3px solid blue", margin:"3px" }}>
             <Books books={book} bookID={setClicked} clickedBook={clickedBook} />
           </div>
 

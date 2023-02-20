@@ -18,15 +18,15 @@ const Books = (props) => {
     } else {
         return (
             <>
-                <div onClick={showInfo}>
+                <div onClick={showInfo} style={{textAlign:"center", width:"400px"}}>
 
-                    <label style={{display:"flex", textAlign:"center", alignContent:"center", width:"100px"}}>
+                    <label style={{display:"flex", width:"100%", fontSize:"23px", padding:"1px"}}>
                         Author: 
-                        <div>{allBooks.author}</div>
+                        <div style={{display:"flex", fontSize:"23px", padding:"1px"}}>{allBooks.author}</div>
                     </label>
-                    <label style={{display:"flex"}}>
+                    <label style={{display:"flex",width:"100%", fontSize:"23px", padding:"1px"}}>
                         title: 
-                        <div>{allBooks.title}</div>
+                        <div style={{display:"flex", fontSize:"23px", padding:"1px"}}>{allBooks.title}</div>
                     </label>
 
                 </div>

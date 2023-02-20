@@ -36,13 +36,15 @@ const BookForm = (props) => {
     }
 
     const deleteThisBook = () => {
-        if (window.confirm(`Are you sure you want to delete this book: Author: ${thisBook.author}, Title: ${thisBook.title}`)) {
+        if (window.confirm(`Are you sure you want to delete this book: Author: 
+        ${thisBook.author}, Title: ${thisBook.title}`)) {
             dispatch(delBook(thisBook.id))
         }
     }
     return (
         <>
-            <form style={{ display: "flex", flexWrap: "wrap", width: "100%", padding:"2px" }} onSubmit={(e) => {
+            <form style={{ display: "flex", flexWrap: "wrap", width: "100%", padding:"2px" }} 
+            onSubmit={(e) => {
                 if (e.nativeEvent.submitter.name === "AddBook") newBook(e)
                 if (e.nativeEvent.submitter.name === "EditBook") modifyBook(e)
                 if (e.nativeEvent.submitter.name === "delete") deleteThisBook()
