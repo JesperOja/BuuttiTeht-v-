@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
-import { createBook,changeBook, delBook } from "../reducers/bookReducer";
-
+import { createBook, changeBook, delBook } from "../reducers/bookReducer";
+import { Input, TextField, FormLabel, Button } from "@mui/material";
 
 const BookForm = (props) => {
 
     const dispatch = useDispatch()
     const thisBook = props.book
-    
+
     const newBook = (event) => {
         event.preventDefault();
 
@@ -25,7 +25,7 @@ const BookForm = (props) => {
 
     const modifyBook = (event) => {
         event.preventDefault();
-        
+
         const modifiedBook = {
             author: event.target.author.value,
             title: event.target.title.value,
@@ -36,36 +36,43 @@ const BookForm = (props) => {
     }
 
     const deleteThisBook = () => {
-        if(window.confirm(`Are you sure you want to delete this book: Author: ${thisBook.author}, Title: ${thisBook.title}`)){
+        if (window.confirm(`Are you sure you want to delete this book: Author: ${thisBook.author}, Title: ${thisBook.title}`)) {
             dispatch(delBook(thisBook.id))
         }
     }
-            return (
-                <>
-                    <form onSubmit={(e) => {if(e.nativeEvent.submitter.name ==="AddBook")newBook(e)
-                                                if(e.nativeEvent.submitter.name ==="EditBook")modifyBook(e)
-                                                if(e.nativeEvent.submitter.name ==="delete")deleteThisBook()} }>
-                        <label>Author: 
-                            <input name="author" placeholder="author" defaultValue={thisBook.author}/>
-                        </label>
-        
-                        <label>Title: 
-                            <input name="title" placeholder="Title" defaultValue={thisBook.title}/>
-                        </label>
-        
-                        <label>Description: 
-                            <textarea name="description" placeholder="Description" rows={6} cols={15} defaultValue={thisBook.description}/>
-                        </label>
-        
-                        <button type="submit" name="AddBook">Save New</button>
-                        <button type="submit" name="EditBook">Save</button>
-                        <button name="delete">Delete Book</button>
-                    </form>
-                </>
-            )
-        
-    
-    
+    return (
+        <>
+            <form style={{ display: "flex", flexWrap: "wrap", width: "100%", padding:"2px" }} onSubmit={(e) => {
+                if (e.nativeEvent.submitter.name === "AddBook") newBook(e)
+                if (e.nativeEvent.submitter.name === "EditBook") modifyBook(e)
+                if (e.nativeEvent.submitter.name === "delete") deleteThisBook()
+            }}>
+                <div style={{ width: "80%", padding:"2px" }}>
+                    <FormLabel>Author:
+                        <Input name="author" placeholder="author" defaultValue={thisBook.author} />
+                    </FormLabel>
+                </div>
+                <div style={{ width: "80%", padding:"2px" }}>
+                    <FormLabel>Title:
+                        <Input name="title" placeholder="Title" defaultValue={thisBook.title} />
+                    </FormLabel>
+                </div>
+                <div style={{ width: "80%", padding:"2px" }}>
+                    <FormLabel style={{textAlign:"left"}}>Description:
+                        <TextField multilane="true" name="description" placeholder="Description" rows={6} maxRows={10} defaultValue={thisBook.description} />
+                    </FormLabel>
+                </div>
+                <div>
+                    <Button type="submit" name="AddBook">Save New</Button>
+                    <Button type="submit" name="EditBook">Save</Button>
+                    <Button type="submit" name="delete">Delete Book</Button>
+                </div>
+            </form>
+        </>
+    )
+
+
+
 }
 
 export default BookForm
