@@ -3,7 +3,6 @@ import {
   addBook,
   getAll,
   editBook,
-  getOne,
   deleteBook,
 } from "../services/bookService";
 
@@ -43,13 +42,6 @@ export const changeBook = (id, book) => {
   return async (dispatch) => {
     const updatedBook = await editBook(id, book);
     dispatch(updateBook(updatedBook));
-  };
-};
-
-export const getBook = (id) => {
-  return async (dispatch) => {
-    const book = await getOne(id);
-    dispatch(updateBook(book));
   };
 };
 

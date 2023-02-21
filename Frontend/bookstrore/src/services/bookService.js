@@ -7,11 +7,6 @@ export const getAll = async () => {
   return response.data;
 };
 
-export const getOne = async (id) => {
-  const response = await axios.get(`${baseUrl}/${id}`);
-  return response.data;
-};
-
 export const editBook = async (id, book) => {
   const response = await axios.put(`${baseUrl}/${id}`, book);
   return response.data;

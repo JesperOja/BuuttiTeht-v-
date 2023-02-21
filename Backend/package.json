@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"node src/index.js\" \"npm run client",
     "client": "npm start --prefix ../Frontend/bookstrore",
-    "installAll": "concurrently \"npm install\" \"npm install --prefix ../Frontend/bookstrore"
+    "installAll": "npm install && npm install --prefix ../Frontend/bookstrore"
   },
   "keywords": [
     "Node",

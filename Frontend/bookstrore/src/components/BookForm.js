@@ -2,15 +2,25 @@ import { useDispatch } from "react-redux";
 import { createBook, changeBook, delBook } from "../reducers/bookReducer";
 import { TextField, Button } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
+import { createNotification } from "../reducers/notificationReducer";
 
 const BookForm = (props) => {
   const dispatch = useDispatch();
-  const thisBook = props.book;
+  let thisBook;
+  if (props.book === null) {
+    thisBook = {
+      author: "author",
+      title: "title",
+      description: "description",
+    };
+  } else {
+    thisBook = props.book;
+  }
 
   const newBook = (event) => {
     event.preventDefault();
 
-    const modifiedBook = {
+    const newBook = {
       author: event.target.author.value,
       title: event.target.title.value,
       description: event.target.description.value,
@@ -20,7 +30,9 @@ const BookForm = (props) => {
     event.target.title.value = "";
     event.target.description.value = "";
 
-    dispatch(createBook(modifiedBook));
+    dispatch(createBook(newBook));
+    const message = `Successfully created ${newBook.title} by ${newBook.author}`;
+    dispatch(createNotification(message, "success", 5));
   };
 
   const modifyBook = (event) => {
@@ -33,14 +45,18 @@ const BookForm = (props) => {
     };
 
     dispatch(changeBook(Number(thisBook.id), modifiedBook));
+    const message = `Successfully edited ${modifiedBook.title} by ${modifiedBook.author}`;
+    dispatch(createNotification(message, "info", 5));
   };
 
   const deleteThisBook = () => {
     if (
-      window.confirm(`Are you sure you want to delete this book: Author: 
+      window.confirm(`Are you sure you want to delete this book? Author: 
         ${thisBook.author}, Title: ${thisBook.title}`)
     ) {
       dispatch(delBook(thisBook.id));
+      const message = `Successfully deleted ${thisBook.title} by ${thisBook.author}`;
+      dispatch(createNotification(message, "warning", 5));
     }
   };
 
@@ -116,24 +132,28 @@ const BookForm = (props) => {
           >
             Save New
           </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            name="EditBook"
-            style={{ margin: "3px" }}
-          >
-            Save
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            name="delete"
-            style={{ margin: "3px" }}
-          >
-            Delete Book
-          </Button>
+          {props.book !== null && (
+            <>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                name="EditBook"
+                style={{ margin: "3px" }}
+              >
+                Save
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                name="delete"
+                style={{ margin: "3px" }}
+              >
+                Delete Book
+              </Button>
+            </>
+          )}
         </div>
       </form>
     </>
