@@ -1,6 +1,6 @@
 # BuuttiTehtävä
 
-##Steps to run application
+## Steps to run application
 1. Go to Backend folder
 2. Run command in this folder: npm run installAll
 3. Run command in the same folder to start backend and frontend: npm run dev
