@@ -5,6 +5,6 @@ import notificationReducer from "../reducers/notificationReducer";
 export default configureStore({
   reducer: {
     books: bookReducer,
-    notification: notificationReducer
+    notification: notificationReducer,
   },
 });

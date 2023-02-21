@@ -1,5 +1,5 @@
-import Book from './book.js';
+import Book from "./book.js";
 
 Book.sync();
 
-export { Book }
+export { Book };

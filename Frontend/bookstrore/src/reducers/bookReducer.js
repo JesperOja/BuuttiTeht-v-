@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  addBook,
-  getAll,
-  editBook,
-  deleteBook,
-} from "../services/bookService";
+import { addBook, getAll, editBook, deleteBook } from "../services/bookService";
 
 const bookSlice = createSlice({
   name: "books",

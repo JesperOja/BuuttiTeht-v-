@@ -8,11 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/book', bookRouter);
+app.use("/api/book", bookRouter);
 
 const start = async () => {
-    await connectToDatabase();
-}
+  await connectToDatabase();
+};
 
 start();
 

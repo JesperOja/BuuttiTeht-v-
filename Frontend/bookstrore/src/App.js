@@ -11,7 +11,7 @@ const App = () => {
 
   const dispatch = useDispatch();
   const allBooks = useSelector((state) => state.books);
-  
+
   useEffect(() => {
     dispatch(initializeBooks());
   }, [dispatch]);
@@ -21,7 +21,7 @@ const App = () => {
       <Container>
         <h1 style={{ textAlign: "center" }}>Book store</h1>
         <Notification />
-        <BookForm book={null}/>
+        <BookForm book={null} />
       </Container>
     );
   } else {
